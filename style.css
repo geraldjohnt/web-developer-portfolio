@@ -18,6 +18,8 @@ nav a.nav-external{color:var(--accent)}
 .va-promo li:before{content:"→";color:var(--accent);margin-right:10px}
 .contact-box .actions{flex-wrap:wrap;margin-bottom:0}
 .profile-links{display:flex;gap:20px;margin:-10px 0 0}.profile-links a{font:500 13px "DM Mono",monospace;color:var(--muted);text-decoration:none}.profile-links a:hover{color:var(--accent)}
+.hero-badges{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-wrap:wrap;gap:8px 20px}.hero-badges li{font-size:13px;color:#b8c3ce}.hero-badges li:before{content:"✓";color:var(--accent);margin-right:8px;font-weight:700}
+.contact-note{color:var(--muted);font-size:14px}
 .more-link{margin:28px 0 0;text-align:center}.more-link a{color:var(--accent);text-decoration:none;font-weight:600}.more-link a:hover{text-decoration:underline}
 footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
