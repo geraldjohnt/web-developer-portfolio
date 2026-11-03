@@ -23,4 +23,11 @@ nav a.nav-external{color:var(--accent)}
 .more-link{margin:28px 0 0;text-align:center}.more-link a{color:var(--accent);text-decoration:none;font-weight:600}.more-link a:hover{text-decoration:underline}
 footer a{color:var(--accent);text-decoration:none}footer a:hover{text-decoration:underline}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-@media(max-width:800px){.va-promo{grid-template-columns:1fr;gap:30px}nav{display:none}.hero{padding-top:70px}.hero-grid,.two-col,.contact-box{grid-template-columns:1fr}.skill-grid,.project-grid{grid-template-columns:1fr}.mini-stats{gap:18px;flex-wrap:wrap}.timeline>div{grid-template-columns:1fr;gap:4px}.hero-card{margin-top:20px}}
+.nav-toggle{display:none;width:42px;height:42px;padding:0;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px;background:transparent;border:1px solid var(--line);border-radius:9px}
+.nav-toggle span{display:block;width:18px;height:2px;background:#fff;transition:transform .3s,opacity .2s}
+.nav.menu-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}.nav.menu-open .nav-toggle span:nth-child(2){opacity:0}.nav.menu-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:800px){.va-promo{grid-template-columns:1fr;gap:30px}.nav-toggle{display:flex}
+.nav nav{position:absolute;top:70px;left:0;right:0;flex-direction:column;gap:0;padding:4px 24px 16px;background:rgba(8,11,16,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .25s,transform .25s,visibility .25s}
+.nav.menu-open nav{opacity:1;visibility:visible;transform:none}
+.nav nav a{display:block;padding:14px 0;font-size:15px;border-bottom:1px solid rgba(255,255,255,.06)}.nav nav a:last-child{border-bottom:none}.hero{padding-top:70px}.hero-grid,.two-col,.contact-box{grid-template-columns:1fr}.skill-grid,.project-grid{grid-template-columns:1fr}.mini-stats{gap:18px;flex-wrap:wrap}.timeline>div{grid-template-columns:1fr;gap:4px}.hero-card{margin-top:20px}}
