@@ -314,13 +314,13 @@ html:not(.js) .stages li .st-ico,.reduce .stages li .st-ico{border-color:var(--o
 .hud.on,.reduce .hud,html:not(.js) .hud{opacity:1}
 .hud i{position:absolute;left:50%;top:50%;border-radius:50%;transform:translate(-50%,-50%)}
 .hud .r1{width:62%;height:62%;border:1px solid rgba(111,227,245,.22)}
-.hud .r2{width:76%;height:76%;border:2px dashed rgba(111,227,245,.28);animation:spin 40s linear infinite}
-.hud .r3{width:88%;height:88%;border:1px solid transparent;border-top-color:rgba(228,168,104,.55);border-bottom-color:rgba(111,227,245,.4);animation:spin 18s linear infinite reverse}
+.hud .r2{width:76%;height:76%;border:2px dashed rgba(111,227,245,.28);animation:hudspin 40s linear infinite}
+.hud .r3{width:88%;height:88%;border:1px solid transparent;border-top-color:rgba(228,168,104,.55);border-bottom-color:rgba(111,227,245,.4);animation:hudspin 18s linear infinite reverse}
 .hud .r4{width:98%;height:98%;background:repeating-conic-gradient(from 0deg,rgba(111,227,245,.35) 0 .4deg,transparent .4deg 6deg);
-  -webkit-mask-image:radial-gradient(circle,transparent 69%,#000 70%,#000 71.5%,transparent 72%);mask-image:radial-gradient(circle,transparent 69%,#000 70%,#000 71.5%,transparent 72%);animation:spin 90s linear infinite}
+  -webkit-mask-image:radial-gradient(circle,transparent 69%,#000 70%,#000 71.5%,transparent 72%);mask-image:radial-gradient(circle,transparent 69%,#000 70%,#000 71.5%,transparent 72%);animation:hudspin 90s linear infinite}
 .hud-tag{position:absolute;font:500 10px/1 var(--f-mono);letter-spacing:.14em;color:rgba(111,227,245,.7);white-space:nowrap}
 .hud-tag.t1{left:22%;top:14%}.hud-tag.t2{right:20%;bottom:15%;color:rgba(228,168,104,.75)}
-@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes hudspin{to{transform:translate(-50%,-50%) rotate(360deg)}}
 
 /* hologram avatar */
 .holo-body{position:relative;overflow:hidden;padding:26px 18px 0;min-height:200px}
