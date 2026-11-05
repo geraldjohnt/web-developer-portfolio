@@ -1,4 +1,4 @@
-/* Holograms for version2.html, drawn on canvas with a small hand-rolled 3D projection.
+/* Holograms for index.html (the version 2 page), drawn on canvas with a small hand-rolled 3D projection.
    - stack.holo: four translucent layers (data → services → API → interface) that materialize
      bottom-up when scrolled into view, joined by data beams, with an AI ring orbiting them.
      Drag to turn it; hovering a legend item lights up its layer.

@@ -3,9 +3,11 @@
 A single-page developer portfolio built in plain HTML, CSS and JavaScript. Live at https://geraldjohnt.github.io/web-developer-portfolio/
 
 ## Files
-- `index.html` — page content (hero, about, skills, experience, projects, business support, contact)
-- `style.css` — styles and responsive breakpoints
-- `script.js` — smooth in-page scrolling (respects reduced-motion) and the footer year
+- `index.html` — the live site (version 2, editor style with holograms)
+- `v2/` — `dev.css` (styles), `dev.js` (typing hero, terminal, command palette, pipeline, back to top),
+  `holo.js` (the `stack.holo` and `clients.geo` holograms) and `gerald-cutout.webp` (portrait)
+- `old.html` — the previous design, kept for reference (marked `noindex`). It uses `style.css` and `script.js`
+- `version2.html` — redirects to `index.html` so older links keep working
 - `.github/workflows/static.yml` — deploys the site to GitHub Pages on every push to `main`
 
 ## Run it
@@ -21,9 +23,7 @@ the same way, so visitors can move between the two.
 setup guide live in the VA portfolio repo: https://github.com/geraldjohnt/va-portfolio/tree/main/apps-script.
 With no endpoint set, the form opens a pre-filled email instead.
 
-## Version 2 (preview)
-`version2.html` is a redesign that sits next to the live `index.html` without replacing it. Open it at
-https://geraldjohnt.github.io/web-developer-portfolio/version2.html once deployed.
+## How the page works
 - Editor-style page in arc blue and copper: the hero component types itself out in a code editor and each finished
   line "compiles" its part of the page; sections compile as they scroll in; experience is a `git log --graph`;
   "How I work" runs as a CI pipeline.
