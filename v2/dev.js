@@ -134,6 +134,7 @@
       print('<span class="ac">➜</span> ready: <a href="https://geraldjohnt.github.io/web-developer-portfolio/">geraldjohnt.github.io/web-developer-portfolio</a>');
       print('<span class="dim">Type <span class="ac">help</span> for commands, or press Ctrl+K.</span>');
       sbBuild.textContent = '✓ build passed'; sbBuild.classList.add('pass');
+      var hud = document.querySelector('.hud'); if (hud) hud.classList.add('on');
       Sound.ok();
       setTimeout(fillGutter, 300);
     }, reduce ? 0 : 420);
@@ -189,12 +190,14 @@
       print('<span class="ac">about</span>       open about.md      <span class="ac">skills</span>    open skills.json');
       print('<span class="ac">experience</span>  open git.log       <span class="ac">projects</span>  open projects/');
       print('<span class="ac">contact</span>     open contact.sh    <span class="ac">va</span>        VA &amp; automation services');
-      print('<span class="ac">github</span>      my GitHub          <span class="ac">clear</span>     clear the terminal');
+      print('<span class="ac">holo</span>        project stack.holo <span class="ac">github</span>    my GitHub');
+      print('<span class="ac">clear</span>       clear the terminal');
     },
     whoami: function () { print('Gerald John Tangpos — Full-Stack Developer &amp; Software Engineer'); print('<span class="dim">9+ years · Cebu, Philippines (GMT+8) · works any time zone</span>'); },
     stack: function () { print('<span class="cu">languages</span>  JavaScript · Python · PHP · C# · Java · SQL'); print('<span class="cu">web</span>        Laravel · Vue.js · AngularJS · WordPress · REST APIs'); print('<span class="cu">data</span>       MySQL · SQL Server · MongoDB · Firebase'); print('<span class="cu">ai</span>         Claude · Claude Code'); },
     about: function () { print('→ opening <span class="ac">about.md</span>'); go('about'); },
     skills: function () { print('→ opening <span class="ac">skills.json</span>'); go('skills'); },
+    holo: function () { print('→ projecting <span class="ac">stack.holo</span>'); go('architecture'); },
     experience: function () { print('→ <span class="ac">git log --graph</span>'); go('experience'); },
     projects: function () { print('→ opening <span class="ac">projects/</span>'); go('projects'); },
     contact: function () { print('→ opening <span class="ac">contact.sh</span>'); go('contact'); },
@@ -270,7 +273,7 @@
 
   /* ---------------- tabs + status bar follow the scroll ---------------- */
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tabs a[data-tab]'));
-  var names = { top: 'Hero.tsx', about: 'about.md', skills: 'skills.json', experience: 'git.log', projects: 'projects/', workflow: 'deliver.yml', 'business-support': 'va-services', contact: 'contact.sh' };
+  var names = { top: 'Hero.tsx', about: 'about.md', skills: 'skills.json', architecture: 'stack.holo', experience: 'git.log', projects: 'projects/', workflow: 'deliver.yml', 'business-support': 'va-services', contact: 'contact.sh' };
   var sbFile = $('#sb-file'), sbLn = $('#sb-ln');
   var secs = Object.keys(names).map(function (id) { return document.getElementById(id); }).filter(Boolean);
   var ticking = false;
@@ -287,6 +290,23 @@
   }
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
+  /* ---------------- back to top ---------------- */
+  var toTop = $('#to-top'), ttT = false;
+  function checkTop() {
+    ttT = false;
+    var near = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - window.innerHeight * 0.9;
+    var show = near && window.scrollY > window.innerHeight;
+    toTop.classList.toggle('show', show); toTop.tabIndex = show ? 0 : -1;
+  }
+  window.addEventListener('scroll', function () { if (!ttT) { ttT = true; requestAnimationFrame(checkTop); } }, { passive: true });
+  window.addEventListener('resize', checkTop);
+  toTop.addEventListener('click', function (e) {
+    e.preventDefault(); Sound.ok();
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    $('.brand').focus({ preventScroll: true });
+  });
+  checkTop();
+
   /* ---------------- mobile menu ---------------- */
   var bar = $('#bar'), toggle = bar.querySelector('.nav-toggle'), menu = $('#nav-menu');
   function setOpen(open) { bar.classList.toggle('open', open); toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); }
@@ -300,6 +320,7 @@
   var items = [
     { t: 'Go to about.md', k: 'section', run: function () { go('about'); } },
     { t: 'Go to skills.json', k: 'section', run: function () { go('skills'); } },
+    { t: 'Go to stack.holo (architecture hologram)', k: 'section', run: function () { go('architecture'); } },
     { t: 'Go to git.log (experience)', k: 'section', run: function () { go('experience'); } },
     { t: 'Go to projects/', k: 'section', run: function () { go('projects'); } },
     { t: 'Go to deliver.yml (how I work)', k: 'section', run: function () { go('workflow'); } },

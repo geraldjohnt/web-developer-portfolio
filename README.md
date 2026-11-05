@@ -27,8 +27,13 @@ https://geraldjohnt.github.io/web-developer-portfolio/version2.html once deploye
 - Editor-style page in arc blue and copper: the hero component types itself out in a code editor and each finished
   line "compiles" its part of the page; sections compile as they scroll in; experience is a `git log --graph`;
   "How I work" runs as a CI pipeline.
+- Hologram layer: HUD rings behind the editor, sections that "materialize" behind a scan line, a projected avatar,
+  a 3D `stack.holo` hologram of the four layers I build (drag to rotate, hover the legend to light a layer) and a
+  `clients.geo` globe linking Cebu with the US and Japan. Both 3D scenes are drawn on canvas in `v2/holo.js` and
+  only animate while on screen.
+- A back-to-top key appears once the visitor reaches the bottom part of the page.
 - A small terminal under the editor accepts commands (`help`, `whoami`, `skills`, `projects`, `contact`, `sudo hire-me`…),
   and Ctrl+K (⌘K on Mac) opens a command palette.
-- Files: `v2/dev.css`, `v2/dev.js` and `v2/gerald-cutout.webp`. Typing sounds are synthesized with the Web Audio API
+- Files: `v2/dev.css`, `v2/dev.js`, `v2/holo.js` and `v2/gerald-cutout.webp`. Typing sounds are synthesized with the Web Audio API
   and can be switched off from the top bar.
 - Visitors with reduced motion turned on, and browsers without JavaScript, get the finished page right away.
