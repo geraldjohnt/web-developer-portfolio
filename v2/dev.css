@@ -104,10 +104,20 @@ kbd{font:500 10.5px/1 var(--f-mono);padding:3px 5px;border:1px solid var(--line)
 .mini span{font-size:12.5px;color:var(--ink-dim)}
 
 /* compile states for hero lines */
-.js .hero-out [data-line]{opacity:0;transform:translateY(8px)}
-.js .hero-out [data-line].ok{opacity:1;transform:none;transition:opacity .45s ease,transform .6s var(--ease)}
-.hero-out [data-line].flash{animation:hot .9s ease-out}
-@keyframes hot{0%{outline:1px dashed rgba(111,227,245,.9);outline-offset:6px;background-color:rgba(111,227,245,.06)}100%{outline:1px dashed rgba(111,227,245,0);outline-offset:2px;background-color:transparent}}
+.js .hero-out [data-line]{opacity:0;position:relative}
+.js .hero-out [data-line].ok{opacity:1}
+/* hologram materialize: the block is projected top to bottom behind a scan line, with a short signal jitter */
+.flash{animation:materialize .75s cubic-bezier(.3,.7,.2,1) both}
+.js .flash::before{content:"";position:absolute;left:-8px;right:-8px;top:0;height:2px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,var(--arc) 12%,#fff 50%,var(--arc) 88%,transparent);box-shadow:0 0 14px 2px rgba(111,227,245,.75);
+  animation:scanline .75s cubic-bezier(.3,.7,.2,1) both}
+@keyframes materialize{
+  0%{clip-path:inset(0 0 100% 0);filter:brightness(2.2) saturate(1.6) drop-shadow(-3px 0 0 rgba(111,227,245,.6)) drop-shadow(3px 0 0 rgba(228,168,104,.5));transform:translateX(-3px)}
+  12%{transform:translateX(3px)}24%{transform:translateX(-1px)}36%{transform:none}
+  70%{clip-path:inset(0 0 0 0);filter:brightness(1.35) drop-shadow(0 0 6px rgba(111,227,245,.4))}
+  80%{opacity:.75}86%{opacity:1}
+  100%{clip-path:inset(0 0 0 0);filter:none;transform:none}}
+@keyframes scanline{0%{top:0;opacity:1}75%{top:100%;opacity:1}100%{top:100%;opacity:0}}
 
 /* editor */
 .ide{min-width:0;background:var(--editor);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 40px 90px -40px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.02),0 0 60px -30px rgba(111,227,245,.35)}
@@ -152,9 +162,8 @@ kbd{font:500 10.5px/1 var(--f-mono);padding:3px 5px;border:1px solid var(--line)
 .fdesc{flex-basis:100%;color:var(--ink-soft);font-size:16px}
 
 /* compile-on-scroll */
-.js [data-compile]{opacity:0;transform:translateY(12px)}
-.js [data-compile].ok{opacity:1;transform:none;transition:opacity .5s ease,transform .7s var(--ease)}
-[data-compile].flash{animation:hot .9s ease-out}
+.js [data-compile]{opacity:0;position:relative}
+.js [data-compile].ok{opacity:1}
 
 .about-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:56px;align-items:center}
 .about-copy{display:grid;gap:18px}
@@ -296,6 +305,74 @@ html:not(.js) .stages li .st-ico,.reduce .stages li .st-ico{border-color:var(--o
 #pal-list li small{color:var(--ink-dim)}
 #pal-list li[aria-selected="true"]{background:var(--arc-a);color:var(--ink);box-shadow:inset 2px 0 0 var(--arc)}
 
+
+/* HUD rings behind the editor */
+.ide-wrap{position:relative;min-width:0}
+.ide-wrap .ide{position:relative;z-index:1}
+.hud{position:absolute;left:50%;top:50%;width:150%;aspect-ratio:1;max-width:none;transform:translate(-50%,-50%);pointer-events:none;z-index:0;
+  -webkit-mask-image:radial-gradient(circle,#000 38%,transparent 70%);mask-image:radial-gradient(circle,#000 38%,transparent 70%);opacity:0;transition:opacity 1.2s}
+.hud.on,.reduce .hud,html:not(.js) .hud{opacity:1}
+.hud i{position:absolute;left:50%;top:50%;border-radius:50%;transform:translate(-50%,-50%)}
+.hud .r1{width:62%;height:62%;border:1px solid rgba(111,227,245,.22)}
+.hud .r2{width:76%;height:76%;border:2px dashed rgba(111,227,245,.28);animation:spin 40s linear infinite}
+.hud .r3{width:88%;height:88%;border:1px solid transparent;border-top-color:rgba(228,168,104,.55);border-bottom-color:rgba(111,227,245,.4);animation:spin 18s linear infinite reverse}
+.hud .r4{width:98%;height:98%;background:repeating-conic-gradient(from 0deg,rgba(111,227,245,.35) 0 .4deg,transparent .4deg 6deg);
+  -webkit-mask-image:radial-gradient(circle,transparent 69%,#000 70%,#000 71.5%,transparent 72%);mask-image:radial-gradient(circle,transparent 69%,#000 70%,#000 71.5%,transparent 72%);animation:spin 90s linear infinite}
+.hud-tag{position:absolute;font:500 10px/1 var(--f-mono);letter-spacing:.14em;color:rgba(111,227,245,.7);white-space:nowrap}
+.hud-tag.t1{left:22%;top:14%}.hud-tag.t2{right:20%;bottom:15%;color:rgba(228,168,104,.75)}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+/* hologram avatar */
+.holo-body{position:relative;overflow:hidden;padding:26px 18px 0;min-height:200px}
+.holo-img{position:relative;z-index:1;width:78%;margin:0 auto}
+.holo-img img{width:100%;filter:saturate(.5) sepia(.25) hue-rotate(150deg) brightness(1.1) contrast(1.05) drop-shadow(0 0 16px rgba(111,227,245,.45));opacity:.95}
+.holo-img::after{content:"";position:absolute;inset:0;mix-blend-mode:multiply;background:repeating-linear-gradient(0deg,rgba(0,18,26,.55) 0 1px,transparent 1px 4px);pointer-events:none}
+.holo-img .scan{position:absolute;left:-10%;right:-10%;height:30%;top:-30%;background:linear-gradient(180deg,transparent,rgba(111,227,245,.22) 80%,rgba(111,227,245,.7) 99%,transparent);mix-blend-mode:screen;animation:sweep 4.2s ease-in-out infinite}
+@keyframes sweep{0%{top:-30%}60%,100%{top:110%}}
+.emitter{position:absolute;left:50%;bottom:6px;width:70%;height:30px;transform:translateX(-50%);z-index:2}
+.emitter i{position:absolute;inset:0;border-radius:50%;border:2px solid var(--arc);box-shadow:0 0 22px rgba(111,227,245,.7),inset 0 0 14px rgba(111,227,245,.5)}
+.emitter i+i{inset:6px 22%;border:1px dashed rgba(111,227,245,.7);box-shadow:none;animation:wob 6s linear infinite}
+@keyframes wob{to{transform:rotate(360deg)}}
+.holo-body .beam{position:absolute;left:50%;bottom:16px;width:86%;height:88%;transform:translateX(-50%);background:linear-gradient(0deg,rgba(111,227,245,.2),transparent 80%);clip-path:polygon(30% 100%,70% 100%,100% 0,0 0);pointer-events:none}
+.callouts{position:absolute;inset:0;z-index:3;font:500 10px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--arc);pointer-events:none}
+.callouts li{position:absolute;padding:4px 6px;background:rgba(6,9,13,.75);border:1px solid rgba(111,227,245,.35)}
+.callouts li::after{content:"";position:absolute;top:50%;width:22px;height:1px;background:var(--arc)}
+.callouts .c1{left:8px;top:22%}.callouts .c1::after{left:100%}
+.callouts .c2{right:8px;top:44%;color:var(--copper-l);border-color:rgba(228,168,104,.45)}.callouts .c2::after{right:100%;background:var(--copper-l)}
+.callouts .c3{left:8px;top:66%}.callouts .c3::after{left:100%}
+.ft.holo{--c:#6FE3F5;border-radius:50%;box-shadow:0 0 6px #6FE3F5}
+
+/* stack.holo */
+.arch{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:28px;align-items:center}
+.arch-stage{position:relative;height:560px;border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:grab;touch-action:pan-y;
+  background:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(43,168,201,.12),transparent 70%),
+    linear-gradient(var(--line-2) 1px,transparent 1px) 0 0/32px 32px,linear-gradient(90deg,var(--line-2) 1px,transparent 1px) 0 0/32px 32px,#05080C}
+.arch-stage:active{cursor:grabbing}
+.arch-stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.arch-hint{position:absolute;right:12px;bottom:10px;font:400 11px/1 var(--f-mono);color:var(--ink-dim)}
+.arch-legend{display:grid;gap:10px}
+.arch-legend li{padding:14px 16px;border:1px solid var(--line);border-left:2px solid var(--arc);border-radius:6px;background:var(--panel);cursor:default;transition:border-color .25s,background .25s,transform .3s var(--ease)}
+.arch-legend li.ai{border-left-color:var(--copper-l)}
+.arch-legend li:hover,.arch-legend li:focus-visible,.arch-legend li.hl{background:var(--panel-2);border-color:rgba(111,227,245,.5);transform:translateX(4px)}
+.lk{font:500 10.5px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim)}
+.arch-legend h3{font-size:16px;margin:6px 0 4px}
+.arch-legend p{font-size:13.5px;color:var(--ink-soft);line-height:1.5}
+
+/* clients.geo */
+.geo{margin:4px 0 0;border:1px solid var(--line);border-radius:8px;background:radial-gradient(circle at 50% 45%,rgba(43,168,201,.14),transparent 65%),#05080C;overflow:hidden}
+.geo canvas{display:block;width:100%;height:260px}
+.geo figcaption{padding:8px 12px;border-top:1px solid var(--line-2);font:400 12px/1.4 var(--f-mono);color:var(--ink-soft)}
+.geo figcaption span{color:var(--arc);margin-right:8px}
+
+/* back to top */
+.to-top{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(var(--sb-h) + 16px + env(safe-area-inset-bottom,0px));z-index:46;display:inline-flex;align-items:center;gap:8px;
+  padding:10px 14px;border-radius:6px;background:rgba(10,15,21,.9);border:1px solid rgba(111,227,245,.4);color:var(--ink);text-decoration:none;font:500 12.5px/1 var(--f-mono);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 10px 30px -10px rgba(0,0,0,.8);
+  opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .3s,transform .4s var(--ease),visibility .3s,border-color .2s,box-shadow .2s}
+.to-top.show{opacity:1;visibility:visible;transform:none}
+.to-top .arr{display:grid;place-items:center;width:20px;height:20px;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;color:var(--arc)}
+.to-top:hover{border-color:var(--arc);box-shadow:0 0 0 4px var(--arc-a),0 10px 30px -10px rgba(0,0,0,.8)}
+
 /* ---------- responsive ---------- */
 @media (max-width:1100px){
   .tabs a{padding:0 12px}
@@ -304,7 +381,8 @@ html:not(.js) .stages li .st-ico,.reduce .stages li .st-ico{border-color:var(--o
 @media (max-width:980px){
   .hero-grid{grid-template-columns:1fr;gap:40px}
   .ide{max-width:680px;width:100%}
-  .about-grid,.contact-grid,.va{grid-template-columns:1fr;gap:36px}
+  .about-grid,.contact-grid,.va,.arch{grid-template-columns:1fr;gap:36px}
+  .arch-stage{height:480px}
   .skill-grid,.repo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stages{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:26px}
   .stages li:nth-child(3)::after{display:none}
@@ -344,6 +422,11 @@ html:not(.js) .stages li .st-ico,.reduce .stages li .st-ico{border-color:var(--o
   .commit{padding:14px 16px}
   .sb-hide,.sb-file{display:none}
   .file-head{margin-bottom:26px}
+  .arch-stage{height:380px}
+  .hud{width:130%}
+  .hud-tag{display:none}
+  .geo canvas{height:220px}
+  .foot{padding-bottom:64px}
   .fname{font-size:20px}
 }
 @media (prefers-reduced-motion:reduce){

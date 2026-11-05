@@ -22,6 +22,7 @@
     <nav id="nav-menu" class="tabs" aria-label="Main">
       <a href="#about" data-tab="about"><i class="ft md"></i>about.md</a>
       <a href="#skills" data-tab="skills"><i class="ft js"></i>skills.json</a>
+      <a href="#architecture" data-tab="architecture"><i class="ft holo"></i>stack.holo</a>
       <a href="#experience" data-tab="experience"><i class="ft git"></i>git.log</a>
       <a href="#projects" data-tab="projects"><i class="ft dir"></i>projects/</a>
       <a href="#contact" data-tab="contact"><i class="ft sh"></i>contact.sh</a>
@@ -60,6 +61,8 @@
       </div>
     </div>
 
+    <div class="ide-wrap">
+    <div class="hud" aria-hidden="true"><i class="r1"></i><i class="r2"></i><i class="r3"></i><i class="r4"></i><span class="hud-tag t1">SYS.RENDER // ONLINE</span><span class="hud-tag t2">LAT 10.31°N · LON 123.89°E</span></div>
     <div class="ide" aria-label="Code editor showing the hero component">
       <div class="ide-top"><span class="ide-tab on"><i class="ft tsx"></i>Hero.tsx</span><span class="ide-tab"><i class="ft md"></i>README.md</span><span class="ide-path">src/components</span></div>
       <pre class="code" id="code" aria-hidden="true"></pre>
@@ -72,6 +75,7 @@
           <input id="term-input" type="text" spellcheck="false" autocapitalize="off" placeholder="help" aria-label="Terminal command">
         </form>
       </div>
+    </div>
     </div>
   </div>
 </section>
@@ -88,7 +92,12 @@
       </div>
       <figure class="avatar" data-compile>
         <div class="img-top"><span><i class="ft img"></i>avatar.webp</span><span>560 × 814</span></div>
-        <div class="img-body"><img src="v2/gerald-cutout.webp" alt="Gerald John Tangpos" width="560" height="814" loading="lazy"></div>
+        <div class="img-body holo-body">
+          <div class="emitter" aria-hidden="true"><i></i><i></i></div>
+          <div class="beam" aria-hidden="true"></div>
+          <div class="holo-img"><img src="v2/gerald-cutout.webp" alt="Gerald John Tangpos" width="560" height="814" loading="lazy"><span class="scan" aria-hidden="true"></span></div>
+          <ul class="callouts" aria-hidden="true"><li class="c1">role: full-stack</li><li class="c2">xp: 9+ yrs</li><li class="c3">loc: cebu, ph</li></ul>
+        </div>
       </figure>
     </div>
   </div>
@@ -110,9 +119,28 @@
   </div>
 </section>
 
+<section id="architecture" class="sec">
+  <div class="wrap">
+    <div class="file-head" data-compile><span class="ln">03</span><h2 class="fname"><i class="ft holo"></i>stack.holo</h2><p class="fdesc">How the pieces I build fit together, from the screen people use down to the data behind it. Drag the hologram to turn it.</p></div>
+    <div class="arch">
+      <div class="arch-stage" data-compile>
+        <canvas id="arch-canvas" role="img" aria-label="Hologram of a four-layer software stack: interface, API, services and data, with AI-assisted development orbiting around it."></canvas>
+        <span class="arch-hint" aria-hidden="true">⟲ drag to rotate</span>
+      </div>
+      <ol class="arch-legend">
+        <li data-layer="3" data-compile tabindex="0"><span class="lk">layer 04</span><h3>Interface</h3><p>Vue.js · AngularJS · WordPress · jQuery · HTML &amp; CSS</p></li>
+        <li data-layer="2" data-compile tabindex="0"><span class="lk">layer 03</span><h3>API</h3><p>Laravel · REST APIs · AJAX · integrations</p></li>
+        <li data-layer="1" data-compile tabindex="0"><span class="lk">layer 02</span><h3>Services &amp; logic</h3><p>PHP · Python · C# · Java · JavaScript</p></li>
+        <li data-layer="0" data-compile tabindex="0"><span class="lk">layer 01</span><h3>Data</h3><p>MySQL · SQL Server · MongoDB · Firebase</p></li>
+        <li data-layer="ai" data-compile tabindex="0" class="ai"><span class="lk">orbit</span><h3>AI-assisted development</h3><p>Claude · Claude Code — used to move faster, with testing and review kept in the loop.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
 <section id="experience" class="sec">
   <div class="wrap">
-    <div class="file-head" data-compile><span class="ln">03</span><h2 class="fname"><i class="ft git"></i>git log --graph</h2><p class="fdesc">9+ years across software engineering and web development.</p></div>
+    <div class="file-head" data-compile><span class="ln">04</span><h2 class="fname"><i class="ft git"></i>git log --graph</h2><p class="fdesc">9+ years across software engineering and web development.</p></div>
     <ol class="gitlog">
       <li data-compile><span class="node head"></span><div class="commit"><p class="meta"><span class="hash">a1f9c3e</span><span class="ref">HEAD → main</span><span class="date">2024–2026</span></p><h3>Software Engineer — Innodata Knowledge Services Inc.</h3><p>Created new software solutions for clients using C#, Python, PHP, JavaScript, and other technologies, with a focus on improving client processes.</p></div></li>
       <li data-compile><span class="node"></span><div class="commit"><p class="meta"><span class="hash">7d02b4f</span><span class="date">2022–2024</span></p><h3>Full-Stack Developer — Full Scale Inc.</h3><p>Maintained and enhanced an employee management system, including features, issue resolution, data validation, and code quality.</p></div></li>
@@ -127,7 +155,7 @@
 
 <section id="projects" class="sec alt">
   <div class="wrap">
-    <div class="file-head" data-compile><span class="ln">04</span><h2 class="fname"><i class="ft dir"></i>projects/</h2><p class="fdesc">Project experience.</p></div>
+    <div class="file-head" data-compile><span class="ln">05</span><h2 class="fname"><i class="ft dir"></i>projects/</h2><p class="fdesc">Project experience.</p></div>
     <div class="repo-grid">
       <article class="repo" data-compile><p class="r-top"><i class="ft dir"></i><span class="r-name">employee-management-system</span><span class="vis">Private</span></p><h3>Employee Management System</h3><p>Full-stack maintenance and feature development involving data validation, issue resolution, and business workflows.</p><p class="r-meta"><span class="topic">employee-management</span></p><ul class="langs"><li><i style="--c:#6FE3F5"></i>Full-Stack</li><li><i style="--c:#E4A868"></i>Validation</li><li><i style="--c:#8A96A3"></i>Maintenance</li></ul></article>
       <article class="repo" data-compile><p class="r-top"><i class="ft dir"></i><span class="r-name">cltre-dashboard</span><span class="vis">Private</span></p><h3>CLTRe Dashboard</h3><p>Front-end product work with API-driven data retrieval and visualization for security-culture measurement.</p><p class="r-meta"><span class="topic">analytics</span></p><ul class="langs"><li><i style="--c:#E4A868"></i>AngularJS</li><li><i style="--c:#6FE3F5"></i>APIs</li><li><i style="--c:#8A96A3"></i>UX</li></ul></article>
@@ -142,7 +170,7 @@
 
 <section id="workflow" class="sec">
   <div class="wrap">
-    <div class="file-head" data-compile><span class="ln">05</span><h2 class="fname"><i class="ft ci"></i>.github/workflows/deliver.yml</h2><p class="fdesc">How I work: requirement → solution → build → test → deploy.</p></div>
+    <div class="file-head" data-compile><span class="ln">06</span><h2 class="fname"><i class="ft ci"></i>.github/workflows/deliver.yml</h2><p class="fdesc">How I work: requirement → solution → build → test → deploy.</p></div>
     <div class="pipeline" id="pipeline" data-compile>
       <div class="pl-top"><span class="pl-status" id="pl-status"><i></i><b>Queued</b></span><span class="pl-name">deliver · main</span><span class="pl-time" id="pl-time">0.0s</span></div>
       <ol class="stages">
@@ -182,13 +210,17 @@
 
 <section id="contact" class="sec contact">
   <div class="wrap">
-    <div class="file-head" data-compile><span class="ln">06</span><h2 class="fname"><i class="ft sh"></i>contact.sh</h2></div>
+    <div class="file-head" data-compile><span class="ln">07</span><h2 class="fname"><i class="ft sh"></i>contact.sh</h2></div>
     <div class="contact-grid">
       <div class="contact-copy">
         <p class="eyebrow" data-compile>Let's work together</p>
         <h2 data-compile>Have a project, system, or process that needs software?</h2>
         <p data-compile>I'm available for full-stack development, internal tools, API integrations, maintenance, troubleshooting, and AI-assisted development work.</p>
         <p class="note" data-compile>I've worked with clients and teams in the US, Japan and the Philippines. Communication is clear and in English, and I can work any shift to match your time zone.</p>
+        <figure class="geo" data-compile>
+          <canvas id="geo-canvas" role="img" aria-label="Hologram globe showing Cebu, Philippines connected to clients in the United States and Japan."></canvas>
+          <figcaption><span>clients.geo</span> Cebu ⇄ United States · Japan</figcaption>
+        </figure>
         <div class="actions" data-compile><a class="btn ghost" href="mailto:geraldjohnt@gmail.com?subject=Project%20enquiry">Email me</a><a class="btn ghost" href="mailto:geraldjohnt@gmail.com?subject=Project%20call%20request&amp;body=Hi%20Gerald%2C%0A%0AI%27d%20like%20to%20book%20a%20short%20call%20about%20a%20project.%0A%0AWhat%20I%20need%20built%3A%20%0AMy%20timezone%3A%20%0ATimes%20that%20work%20for%20me%3A%20%0A">Book a call</a><a class="btn ghost" href="https://www.upwork.com/freelancers/~011ad574500f310d02" target="_blank" rel="noopener">Hire me on Upwork</a></div>
         <ul class="links" data-compile>
           <li><span>email</span><a href="mailto:geraldjohnt@gmail.com">geraldjohnt@gmail.com</a></li>
@@ -241,6 +273,8 @@
   <span class="sb-hide">TypeScript JSX</span>
 </div>
 
+<a href="#top" class="to-top" id="to-top" aria-label="Back to top" tabindex="-1"><span class="arr" aria-hidden="true">↑</span><span>cd ~</span></a>
+
 <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
   <div class="pal-box">
     <input id="pal-input" type="text" placeholder="Go to section or run a command…" aria-label="Search commands" autocomplete="off" spellcheck="false">
@@ -250,5 +284,6 @@
 
 <script src="contact-form.js"></script>
 <script src="v2/dev.js"></script>
+<script src="v2/holo.js"></script>
 </body>
 </html>
